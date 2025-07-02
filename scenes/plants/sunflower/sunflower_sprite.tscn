@@ -1,0 +1,235 @@
+[gd_scene load_steps=12 format=3 uid="uid://yp3v0es2tpmo"]
+
+[ext_resource type="Texture2D" uid="uid://dyb4u7gostisf" path="res://sprites/plants/sunflower/sunflower_stem.png" id="1_fwide"]
+[ext_resource type="Texture2D" uid="uid://c1f3228tqajbf" path="res://sprites/plants/sunflower/sunflower_head.png" id="2_ejyv4"]
+[ext_resource type="Texture2D" uid="uid://b33cyvvpbwy4b" path="res://sprites/plants/sunflower/sunflower_face0.png" id="3_x48n8"]
+[ext_resource type="Texture2D" uid="uid://dhbp7ta8panab" path="res://sprites/plants/sunflower/sunflower_leaf0.png" id="3_y20wx"]
+[ext_resource type="Texture2D" uid="uid://bwtgbcxpyfbbl" path="res://sprites/plants/sunflower/sunflower_face1.png" id="4_peb83"]
+[ext_resource type="Texture2D" uid="uid://dpxeuxpj8jtaq" path="res://sprites/plants/sunflower/sunflower_leaf1.png" id="4_x48n8"]
+
+[sub_resource type="Animation" id="Animation_msnlc"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stem/Head/Face0:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stem:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.25, 3, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stem/Leaves/Leaf0:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.20944, 0.0, -0.20944, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stem/Leaves/Leaf1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.20944, 0.0, 0.20944, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stem/Head/Face1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Stem/Head:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -16), Vector2(1, -14), Vector2(0, -16), Vector2(-1, -14)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Stem/Head:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261681, 0.0, -0.261799]
+}
+
+[sub_resource type="Animation" id="Animation_hqgm6"]
+resource_name = "pre_action"
+
+[sub_resource type="Animation" id="Animation_ai82a"]
+resource_name = "action"
+
+[sub_resource type="Animation" id="Animation_y20wx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stem/Head/Face0:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stem:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stem/Leaves/Leaf0:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stem/Leaves/Leaf1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stem/Head/Face1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Stem/Head:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Stem/Head:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mhc1"]
+_data = {
+&"RESET": SubResource("Animation_y20wx"),
+&"action": SubResource("Animation_ai82a"),
+&"idle": SubResource("Animation_msnlc"),
+&"pre_action": SubResource("Animation_hqgm6")
+}
+
+[node name="Sunflower_Sprite" type="Node2D"]
+
+[node name="Stem" type="Sprite2D" parent="."]
+texture = ExtResource("1_fwide")
+offset = Vector2(0, -12)
+
+[node name="Head" type="Sprite2D" parent="Stem"]
+position = Vector2(0, -16)
+texture = ExtResource("2_ejyv4")
+offset = Vector2(-0.5, 4)
+
+[node name="Face0" type="Sprite2D" parent="Stem/Head"]
+position = Vector2(0, -11)
+texture = ExtResource("3_x48n8")
+offset = Vector2(-0.5, 15)
+
+[node name="Face1" type="Sprite2D" parent="Stem/Head"]
+position = Vector2(0, -11)
+texture = ExtResource("4_peb83")
+offset = Vector2(-0.5, 15)
+
+[node name="Leaves" type="Node2D" parent="Stem"]
+
+[node name="Leaf0" type="Sprite2D" parent="Stem/Leaves"]
+texture = ExtResource("3_y20wx")
+offset = Vector2(0, -13)
+
+[node name="Leaf1" type="Sprite2D" parent="Stem/Leaves"]
+texture = ExtResource("4_x48n8")
+offset = Vector2(0, -13)
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6mhc1")
+}
