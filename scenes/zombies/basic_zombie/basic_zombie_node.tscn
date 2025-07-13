@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqm8a5yy2i34g"]
+
+[ext_resource type="PackedScene" uid="uid://e0cjp8lq68no" path="res://scenes/zombies/zombie_node.tscn" id="1_ffmw6"]
+[ext_resource type="Script" uid="uid://dfuoomfdwi5yw" path="res://scenes/zombies/basic_zombie/basic_zombie.gd" id="2_2h3t1"]
+[ext_resource type="PackedScene" uid="uid://dvbhy3076nb4w" path="res://scenes/zombies/basic_zombie/basic_zombie_sprite.tscn" id="2_troyd"]
+[ext_resource type="Script" uid="uid://ckr1j4kj3adi" path="res://scripts/zombie_scripts/zombie_components/zombie_movement.gd" id="3_0hf8i"]
+[ext_resource type="Script" uid="uid://e6t3csjx6p3m" path="res://scripts/zombie_scripts/zombie_components/plant_detection_component.gd" id="3_troyd"]
+[ext_resource type="Script" uid="uid://bodna47xgpkv6" path="res://scripts/zombie_scripts/zombie_components/chomp_component.gd" id="6_yap6u"]
+[ext_resource type="Script" uid="uid://du3h6l7moscgk" path="res://scripts/shared_components/cooldown_component.gd" id="7_hna04"]
+[ext_resource type="Texture2D" uid="uid://dy85ud7s077vb" path="res://sprites/zombies/basic_zombie/basic_zombie_forearmr.png" id="8_2vsfg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hf8i"]
+size = Vector2(19, 39)
+
+[node name="Zombie_Node" node_paths=PackedStringArray("forearm_sprite", "sprite") instance=ExtResource("1_ffmw6")]
+script = ExtResource("2_2h3t1")
+armor_states = {
+"state_0": "",
+"state_1": "",
+"state_2": ""
+}
+forearm_sprite = NodePath("Zombie_Sprite/Armr/Forearmr")
+sprite = NodePath("Zombie_Sprite")
+health = 200
+
+[node name="Zombie_Sprite" parent="." index="0" instance=ExtResource("2_troyd")]
+position = Vector2(0, 6)
+
+[node name="Armr" parent="Zombie_Sprite" index="4"]
+position = Vector2(3, -17.8)
+scale = Vector2(1, 1)
+
+[node name="Movement" type="Node" parent="Components" index="1" node_paths=PackedStringArray("zombie")]
+unique_name_in_owner = true
+script = ExtResource("3_0hf8i")
+zombie = NodePath("../..")
+walk_speed = 5.4
+metadata/_custom_type_script = "uid://ckr1j4kj3adi"
+
+[node name="Detect_Node" type="Node" parent="Components" index="2" node_paths=PackedStringArray("zombie")]
+unique_name_in_owner = true
+script = ExtResource("3_troyd")
+zombie = NodePath("../..")
+detect_range = 24.0
+metadata/_custom_type_script = "uid://e6t3csjx6p3m"
+
+[node name="Chomp_Node" type="Node" parent="Components" index="3"]
+unique_name_in_owner = true
+script = ExtResource("6_yap6u")
+metadata/_custom_type_script = "uid://bodna47xgpkv6"
+
+[node name="Attack_Cooldown_Node" type="Node" parent="Components" index="4" node_paths=PackedStringArray("entity")]
+script = ExtResource("7_hna04")
+entity = NodePath("../..")
+cooldown_type = "attack"
+cooldown_time = 0.525
+metadata/_custom_type_script = "uid://du3h6l7moscgk"
+
+[node name="Hitbox" parent="." index="2"]
+visible = true
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_0hf8i")
+
+[node name="Arm_Fall" parent="." index="3"]
+position = Vector2(-1, -15)
+texture = ExtResource("8_2vsfg")
+
+[connection signal="timeout" from="Components/Attack_Cooldown_Node" to="." method="_on_attack_cooldown_node_timeout"]
+
+[editable path="Zombie_Sprite"]

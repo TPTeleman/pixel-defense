@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=9 format=3 uid="uid://c6wthg6e3oauv"]
+
+[ext_resource type="Script" uid="uid://c5uk7t54uejv8" path="res://scripts/level_data/level_data.gd" id="1_58cgm"]
+[ext_resource type="Script" uid="uid://36ahobl4sx0x" path="res://scripts/level_data/wave_data.gd" id="2_afhyf"]
+
+[sub_resource type="Resource" id="Resource_58cgm"]
+script = ExtResource("2_afhyf")
+zombie_pool = Array[String](["basic_zombie"])
+budget = 1
+spawn_rate = 0.0
+metadata/_custom_type_script = "uid://36ahobl4sx0x"
+
+[sub_resource type="Resource" id="Resource_afhyf"]
+script = ExtResource("2_afhyf")
+zombie_pool = Array[String](["basic_zombie"])
+budget = 3
+spawn_rate = 8.0
+metadata/_custom_type_script = "uid://36ahobl4sx0x"
+
+[sub_resource type="Resource" id="Resource_t15p3"]
+script = ExtResource("2_afhyf")
+zombie_pool = Array[String](["conehead_zombie"])
+budget = 2
+spawn_rate = 0.0
+metadata/_custom_type_script = "uid://36ahobl4sx0x"
+
+[sub_resource type="Resource" id="Resource_ub2l4"]
+script = ExtResource("2_afhyf")
+zombie_pool = Array[String](["basic_zombie"])
+budget = 1
+spawn_rate = 0.0
+metadata/_custom_type_script = "uid://36ahobl4sx0x"
+
+[sub_resource type="Resource" id="Resource_6qjsw"]
+script = ExtResource("2_afhyf")
+zombie_pool = Array[String](["basic_zombie", "conehead_zombie"])
+budget = 3
+spawn_rate = 8.0
+metadata/_custom_type_script = "uid://36ahobl4sx0x"
+
+[sub_resource type="Resource" id="Resource_8b56r"]
+script = ExtResource("2_afhyf")
+zombie_pool = Array[String](["basic_zombie", "conehead_zombie"])
+budget = 8
+spawn_rate = 1.5
+metadata/_custom_type_script = "uid://36ahobl4sx0x"
+
+[resource]
+script = ExtResource("1_58cgm")
+waves = Array[ExtResource("2_afhyf")]([SubResource("Resource_58cgm"), SubResource("Resource_58cgm"), SubResource("Resource_58cgm"), SubResource("Resource_afhyf"), SubResource("Resource_t15p3"), SubResource("Resource_ub2l4"), SubResource("Resource_afhyf"), SubResource("Resource_6qjsw"), SubResource("Resource_8b56r")])
+wave_delay = 30.0
+wave_duration = 35.0
+sun_falls = true
+starting_sun = 50
+first_sun_delay = 4.5
+sun_delay = 16.0
+sun_power = 25
+first_sun_needed = 6
+metadata/_custom_type_script = "uid://c5uk7t54uejv8"

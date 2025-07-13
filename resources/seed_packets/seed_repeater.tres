@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SeedPacket" load_steps=3 format=3 uid="uid://cpmutdb1kn4hd"]
+
+[ext_resource type="PackedScene" uid="uid://cjwmgub3lj4t" path="res://scenes/plants/repeater/repeater_plant.tscn" id="1_xe2el"]
+[ext_resource type="Script" uid="uid://c80jll17nn2pr" path="res://scripts/seed_packet/seed_packet.gd" id="2_tmr80"]
+
+[resource]
+script = ExtResource("2_tmr80")
+name = "repeater"
+plant = ExtResource("1_xe2el")
+sun_cost = 75
+start_cooldown = 0.0
+recharge = 14.0
+is_upgrade = false
+placement_tags = 0
+cell_type = 1
+metadata/_custom_type_script = "uid://c80jll17nn2pr"

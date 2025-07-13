@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SeedPacket" load_steps=3 format=3 uid="uid://c7y225ykxfllh"]
+
+[ext_resource type="PackedScene" uid="uid://d38cempdhpj5g" path="res://scenes/plants/wallnut/wallnut_plant.tscn" id="1_a8b3n"]
+[ext_resource type="Script" uid="uid://c80jll17nn2pr" path="res://scripts/seed_packet/seed_packet.gd" id="2_hx614"]
+
+[resource]
+script = ExtResource("2_hx614")
+name = "wallnut"
+plant = ExtResource("1_a8b3n")
+sun_cost = 50
+start_cooldown = 10.0
+recharge = 24.0
+is_upgrade = false
+placement_tags = 0
+cell_type = 1
+metadata/_custom_type_script = "uid://c80jll17nn2pr"

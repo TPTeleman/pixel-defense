@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg6bwopnhqdfp"]
+
+[ext_resource type="Script" uid="uid://cn0cgg1ggq7l3" path="res://scripts/plant_scripts/plant.gd" id="1_s28l8"]
+[ext_resource type="Script" uid="uid://cajutuhvxy2kj" path="res://scripts/shared_components/status_manager_component.gd" id="3_0afe7"]
+[ext_resource type="Script" uid="uid://don2adwcauois" path="res://scripts/shared_components/health_component.gd" id="3_g5vmh"]
+[ext_resource type="Script" uid="uid://cxlq5fml03k0u" path="res://scripts/shared_components/hitbox_component.gd" id="4_0afe7"]
+
+[node name="Plant_Node" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_s28l8")
+health = 300
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Health_Node" type="Node" parent="Components"]
+unique_name_in_owner = true
+script = ExtResource("3_g5vmh")
+metadata/_custom_type_script = "uid://don2adwcauois"
+
+[node name="Status_Node" type="Node" parent="Components" node_paths=PackedStringArray("entity")]
+unique_name_in_owner = true
+script = ExtResource("3_0afe7")
+entity = NodePath("../..")
+metadata/_custom_type_script = "uid://cajutuhvxy2kj"
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+collision_mask = 0
+script = ExtResource("4_0afe7")
+metadata/_custom_type_script = "uid://cxlq5fml03k0u"

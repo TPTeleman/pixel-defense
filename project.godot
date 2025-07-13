@@ -11,15 +11,37 @@ config_version=5
 [application]
 
 config/name="Pixel Defense"
+run/main_scene="uid://7d55d80oukee"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=400
+window/size/viewport_height=300
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
 folder_colors={
+"res://resources/": "pink",
 "res://scenes/": "purple",
+"res://scripts/": "green",
 "res://sprites/": "yellow"
 }
+
+[global_group]
+
+Object="Ignored by lobbing plants."
+
+[layer_names]
+
+2d_physics/layer_1="plant"
+2d_physics/layer_2="plant_element"
+2d_physics/layer_3="zombie"
+2d_physics/layer_4="zombie_element"
 
 [rendering]
 

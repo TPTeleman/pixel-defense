@@ -1,0 +1,151 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt3bv28ag56nq"]
+
+[ext_resource type="Script" uid="uid://c0y5fqw583mry" path="res://scenes/ui_elements/packet_control/packet_control.gd" id="1_hdyoi"]
+[ext_resource type="Texture2D" uid="uid://b5l4tfkxyg5sl" path="res://sprites/seed_packets/background_textures/background_default.png" id="2_3si0x"]
+[ext_resource type="Texture2D" uid="uid://h2b4qioqmrbk" path="res://sprites/seed_packets/packet_top.png" id="3_bbnul"]
+[ext_resource type="Texture2D" uid="uid://dsm4qk8jag2y" path="res://sprites/seed_packets/plant_icons/packet_peashooter.png" id="4_pdqka"]
+[ext_resource type="Texture2D" uid="uid://cbjbctd04r75" path="res://sprites/seed_packets/packet_bottom.png" id="5_tl6yv"]
+[ext_resource type="Texture2D" uid="uid://c4cef35hqh2hy" path="res://sprites/seed_packets/packet_overlay_black.png" id="6_bbnul"]
+[ext_resource type="FontFile" uid="uid://cuvj6j7ukbl7u" path="res://fonts_base/TOUCHCONCRETE.otf" id="6_mvqq0"]
+[ext_resource type="Texture2D" uid="uid://cdri53rhbabq5" path="res://sprites/seed_packets/packet_overlay_white.png" id="6_pdqka"]
+
+[sub_resource type="FontVariation" id="FontVariation_rpybx"]
+base_font = ExtResource("6_mvqq0")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lujct"]
+font = SubResource("FontVariation_rpybx")
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.717647)
+
+[node name="Packet_Control" type="Control"]
+custom_minimum_size = Vector2(52, 38)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -348.0
+offset_bottom = -262.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+script = ExtResource("1_hdyoi")
+
+[node name="Textures" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Packet_Background" type="TextureRect" parent="Textures"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_3si0x")
+expand_mode = 1
+
+[node name="Packet_Top" type="TextureRect" parent="Textures"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_bbnul")
+expand_mode = 1
+
+[node name="Packet_Plant" type="TextureRect" parent="Textures"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_pdqka")
+expand_mode = 1
+
+[node name="Packet_Bottom" type="TextureRect" parent="Textures"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_tl6yv")
+expand_mode = 1
+
+[node name="Disable_Overlay" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.41, 0.1312, 0.1312, 0.643137)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pdqka")
+expand_mode = 1
+
+[node name="Select_Overlay" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.643137)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pdqka")
+expand_mode = 1
+
+[node name="Recharge_Bar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.552941)
+layout_mode = 0
+anchor_left = 0.0192308
+anchor_top = 0.0263158
+anchor_right = 0.980769
+anchor_bottom = 0.973684
+step = 2.5
+value = 50.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("6_bbnul")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Cost_Label" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "999"
+label_settings = SubResource("LabelSettings_lujct")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

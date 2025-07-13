@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://e0cjp8lq68no"]
+
+[ext_resource type="Script" uid="uid://cfjk8r4sesjuj" path="res://scripts/zombie_scripts/zombie.gd" id="1_jk1op"]
+[ext_resource type="Script" uid="uid://don2adwcauois" path="res://scripts/shared_components/health_component.gd" id="2_0ytas"]
+[ext_resource type="Script" uid="uid://cxlq5fml03k0u" path="res://scripts/shared_components/hitbox_component.gd" id="3_0ytas"]
+[ext_resource type="Script" uid="uid://cajutuhvxy2kj" path="res://scripts/shared_components/status_manager_component.gd" id="3_f0ctw"]
+
+[sub_resource type="Gradient" id="Gradient_f0ctw"]
+offsets = PackedFloat32Array(0, 0.695652, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hft4m"]
+gradient = SubResource("Gradient_f0ctw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hft4m"]
+particle_flag_disable_z = true
+direction = Vector3(1, -1, 0)
+spread = 0.0
+initial_velocity_min = 175.0
+initial_velocity_max = 350.0
+angular_velocity_min = -400.0
+angular_velocity_max = 400.0
+gravity = Vector3(0, 640, 0)
+scale_min = 1.25
+scale_max = 1.25
+color_ramp = SubResource("GradientTexture1D_hft4m")
+
+[node name="Zombie_Node" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_jk1op")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Health_Node" type="Node" parent="Components"]
+unique_name_in_owner = true
+script = ExtResource("2_0ytas")
+metadata/_custom_type_script = "uid://don2adwcauois"
+
+[node name="Status_Node" type="Node" parent="Components" node_paths=PackedStringArray("entity")]
+unique_name_in_owner = true
+script = ExtResource("3_f0ctw")
+entity = NodePath("../..")
+metadata/_custom_type_script = "uid://cajutuhvxy2kj"
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_0ytas")
+metadata/_custom_type_script = "uid://cxlq5fml03k0u"
+
+[node name="Arm_Fall" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_hft4m")

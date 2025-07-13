@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm3awatncb8hg"]
+
+[ext_resource type="PackedScene" uid="uid://e0cjp8lq68no" path="res://scenes/zombies/zombie_node.tscn" id="1_b7hlp"]
+[ext_resource type="PackedScene" uid="uid://dvbhy3076nb4w" path="res://scenes/zombies/basic_zombie/basic_zombie_sprite.tscn" id="2_llabc"]
+[ext_resource type="Script" uid="uid://6saf1wxftdpb" path="res://scenes/zombies/screendoor_zombie/object_entity.gd" id="2_ume6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7hlp"]
+size = Vector2(12, 32)
+
+[node name="Zombie_Node" instance=ExtResource("1_b7hlp")]
+script = ExtResource("2_ume6m")
+armor = 500
+armor_type = "metal"
+health = 0
+
+[node name="Zombie_Sprite" parent="." index="0" instance=ExtResource("2_llabc")]
+modulate = Color(0.463587, 0.463587, 0.463587, 1)
+scale = Vector2(0.8, 0.8)
+
+[node name="Hitbox" parent="." index="2"]
+visible = true
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_b7hlp")

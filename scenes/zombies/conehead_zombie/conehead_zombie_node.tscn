@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygt5hsyntefl"]
+
+[ext_resource type="PackedScene" uid="uid://cqm8a5yy2i34g" path="res://scenes/zombies/basic_zombie/basic_zombie_node.tscn" id="1_omsrk"]
+[ext_resource type="Texture2D" uid="uid://cbmjt5wst25k8" path="res://sprites/zombies/basic_zombie/armor_cone0.png" id="2_cyldk"]
+
+[node name="Zombie_Node" node_paths=PackedStringArray("armor_sprite") instance=ExtResource("1_omsrk")]
+armor_sprite = NodePath("Zombie_Sprite/Spine/Body/Head/Armor")
+armor_states = {
+"state_0": "res://sprites/zombies/basic_zombie/armor_cone0.png",
+"state_1": "res://sprites/zombies/basic_zombie/armor_cone1.png",
+"state_2": "res://sprites/zombies/basic_zombie/armor_cone2.png"
+}
+armor = 370
+armor_type = "plastic"
+
+[node name="Armor" type="Sprite2D" parent="Zombie_Sprite/Spine/Body/Head" index="1"]
+position = Vector2(0, -9.53674e-07)
+texture = ExtResource("2_cyldk")
+offset = Vector2(-1, -12)
+
+[node name="Armr" parent="Zombie_Sprite" index="4"]
+position = Vector2(3, -17.8)
+scale = Vector2(1, 1)
+
+[editable path="Zombie_Sprite"]

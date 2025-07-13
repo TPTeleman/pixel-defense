@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SeedPacket" load_steps=3 format=3 uid="uid://3h6tr32hhw63"]
+
+[ext_resource type="PackedScene" uid="uid://ca11dhw4oi513" path="res://scenes/plants/fire_pea/fire_pea_plant.tscn" id="1_sy137"]
+[ext_resource type="Script" uid="uid://c80jll17nn2pr" path="res://scripts/seed_packet/seed_packet.gd" id="2_agfcp"]
+
+[resource]
+script = ExtResource("2_agfcp")
+name = "fire_pea"
+plant = ExtResource("1_sy137")
+sun_cost = 275
+start_cooldown = 5.0
+recharge = 5.0
+is_upgrade = false
+placement_tags = 0
+cell_type = 1
+metadata/_custom_type_script = "uid://c80jll17nn2pr"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SeedPacket" load_steps=3 format=3 uid="uid://dg8wlesk5pulm"]
+
+[ext_resource type="PackedScene" uid="uid://dqkx08snupkln" path="res://scenes/plants/snow_pea/snow_pea_plant.tscn" id="1_vuvsd"]
+[ext_resource type="Script" uid="uid://c80jll17nn2pr" path="res://scripts/seed_packet/seed_packet.gd" id="2_n3bu1"]
+
+[resource]
+script = ExtResource("2_n3bu1")
+name = "snow_pea"
+plant = ExtResource("1_vuvsd")
+sun_cost = 175
+start_cooldown = 5.0
+recharge = 5.0
+is_upgrade = false
+placement_tags = 0
+cell_type = 1
+metadata/_custom_type_script = "uid://c80jll17nn2pr"

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://doy7fhls2up0l"]
+
+[ext_resource type="PackedScene" uid="uid://s725ol4h2rn8" path="res://scenes/game_world/projectiles/straight_plant_projectile.tscn" id="1_vco25"]
+[ext_resource type="Script" uid="uid://bk025wu8upu8c" path="res://scenes/game_world/projectiles/cold_pea/cold_pea.gd" id="2_hipoy"]
+[ext_resource type="Texture2D" uid="uid://dci0101mf5wvm" path="res://sprites/particles/projectiles/cold_pea.png" id="2_n11pp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw07a"]
+radius = 5.0
+
+[node name="Cold_Pea" instance=ExtResource("1_vco25")]
+script = ExtResource("2_hipoy")
+slow_duration = 2.5
+slow_power = 0.5
+damage_type = "ice"
+sub_type = "pea"
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_n11pp")
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_dw07a")
+
+[node name="Screen_Notifier" parent="." index="2"]
+rect = Rect2(-5, -5, 10, 10)

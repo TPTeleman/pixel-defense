@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d38cempdhpj5g"]
+
+[ext_resource type="PackedScene" uid="uid://dg6bwopnhqdfp" path="res://scenes/plants/plant_node.tscn" id="1_0yqwk"]
+[ext_resource type="Script" uid="uid://bfe3u2g1e3vwd" path="res://scenes/plants/wallnut/wallnut.gd" id="2_h1y4r"]
+[ext_resource type="PackedScene" uid="uid://ccx33dy1wc2lq" path="res://scenes/plants/wallnut/wallnut_sprite.tscn" id="3_h3mmj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47jsx"]
+size = Vector2(16, 25)
+
+[node name="Plant_Node" node_paths=PackedStringArray("sprite") instance=ExtResource("1_0yqwk")]
+script = ExtResource("2_h1y4r")
+sprite = NodePath("Wallnut_Sprite")
+health = 4000
+
+[node name="Wallnut_Sprite" parent="." index="0" instance=ExtResource("3_h3mmj")]
+position = Vector2(0, 6)
+
+[node name="Hitbox" parent="." index="2"]
+visible = true
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_47jsx")
+
+[connection signal="damaged" from="Components/Health_Node" to="." method="_on_health_node_damaged"]

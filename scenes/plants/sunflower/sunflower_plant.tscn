@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://rd3skxr6hqwy"]
+
+[ext_resource type="PackedScene" uid="uid://dg6bwopnhqdfp" path="res://scenes/plants/plant_node.tscn" id="1_47jsx"]
+[ext_resource type="Script" uid="uid://u5u0ycuu6tqw" path="res://scenes/plants/sunflower/sunflower.gd" id="2_kji2d"]
+[ext_resource type="PackedScene" uid="uid://yp3v0es2tpmo" path="res://scenes/plants/sunflower/sunflower_sprite.tscn" id="2_np4v2"]
+[ext_resource type="Script" uid="uid://du3h6l7moscgk" path="res://scripts/shared_components/cooldown_component.gd" id="4_kji2d"]
+[ext_resource type="Script" uid="uid://dspd4bd5kfcow" path="res://scripts/plant_scripts/plant_components/sun_maker_component.gd" id="5_i3kwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47jsx"]
+size = Vector2(16, 25)
+
+[node name="Plant_Node" node_paths=PackedStringArray("sprite") instance=ExtResource("1_47jsx")]
+script = ExtResource("2_kji2d")
+sprite = NodePath("Sunflower_Sprite")
+
+[node name="Sunflower_Sprite" parent="." index="0" instance=ExtResource("2_np4v2")]
+position = Vector2(0, 6)
+
+[node name="Cooldown_Node" type="Node" parent="Components" index="1" node_paths=PackedStringArray("entity")]
+unique_name_in_owner = true
+script = ExtResource("4_kji2d")
+entity = NodePath("../..")
+cooldown_type = "produce"
+cooldown_time = 20.0
+variation = 4.0
+metadata/_custom_type_script = "uid://du3h6l7moscgk"
+
+[node name="Sun_Maker_Node" type="Node" parent="Components" index="2" node_paths=PackedStringArray("plant", "sun_point")]
+unique_name_in_owner = true
+script = ExtResource("5_i3kwo")
+plant = NodePath("../..")
+sun_point = NodePath("../../Sun_Spawn")
+metadata/_custom_type_script = "uid://dspd4bd5kfcow"
+
+[node name="Hitbox" parent="." index="2"]
+visible = true
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_47jsx")
+
+[node name="Sun_Spawn" type="Marker2D" parent="." index="3"]
+position = Vector2(0, -17)
+
+[connection signal="timeout" from="Components/Cooldown_Node" to="." method="_on_cooldown_node_timeout"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxts3lyt0yw7p"]
+
+[ext_resource type="PackedScene" uid="uid://cqm8a5yy2i34g" path="res://scenes/zombies/basic_zombie/basic_zombie_node.tscn" id="1_gkak1"]
+[ext_resource type="PackedScene" uid="uid://bm3awatncb8hg" path="res://scenes/zombies/screendoor_zombie/screendoor_node.tscn" id="2_cl74p"]
+
+[node name="Zombie_Node" instance=ExtResource("1_gkak1")]
+
+[node name="Armr" parent="Zombie_Sprite" index="4"]
+position = Vector2(3, -17.8)
+scale = Vector2(1, 1)
+
+[node name="Screendoor_Node" parent="." index="3" instance=ExtResource("2_cl74p")]
+position = Vector2(-14, 0)
+
+[editable path="Zombie_Sprite"]

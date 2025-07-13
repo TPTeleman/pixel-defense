@@ -1,0 +1,22 @@
+[gd_scene load_steps=12 format=3 uid="uid://7d55d80oukee"]
+
+[ext_resource type="Script" uid="uid://sppoj8nupt3i" path="res://scripts/game_world/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://x3u1kmphyusf" path="res://scenes/game_world/lawn.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://c80jll17nn2pr" path="res://scripts/seed_packet/seed_packet.gd" id="2_choun"]
+[ext_resource type="Resource" uid="uid://b1ktf2ynwxk08" path="res://resources/seed_packets/seed_sunflower.tres" id="3_ya4ey"]
+[ext_resource type="Resource" uid="uid://c8a8jqp8at6t1" path="res://resources/seed_packets/seed_peashooter.tres" id="4_eb6dy"]
+[ext_resource type="Resource" uid="uid://cpmutdb1kn4hd" path="res://resources/seed_packets/seed_repeater.tres" id="5_trceg"]
+[ext_resource type="Resource" uid="uid://c7y225ykxfllh" path="res://resources/seed_packets/seed_wallnut.tres" id="7_jkv2x"]
+[ext_resource type="Resource" uid="uid://blqpe3esl2ny4" path="res://resources/seed_packets/seed_cabbage_pult.tres" id="7_ya4ey"]
+[ext_resource type="Resource" uid="uid://dg8wlesk5pulm" path="res://resources/seed_packets/seed_snow_pea.tres" id="8_choun"]
+[ext_resource type="Resource" uid="uid://dx0w482f7ex21" path="res://resources/level_data/level_1_99.tres" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://dqi215sgw1tjq" path="res://scenes/hud.tscn" id="11_ya4ey"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0wfyh")
+seed_inventory = Array[ExtResource("2_choun")]([ExtResource("3_ya4ey"), ExtResource("4_eb6dy"), ExtResource("5_trceg"), ExtResource("8_choun"), ExtResource("7_ya4ey"), ExtResource("7_jkv2x")])
+level_data = ExtResource("9_choun")
+
+[node name="Lawn" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="HUD" parent="." instance=ExtResource("11_ya4ey")]

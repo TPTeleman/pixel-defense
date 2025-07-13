@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://drqu58j7vp2ho"]
+
+[ext_resource type="PackedScene" uid="uid://dg6bwopnhqdfp" path="res://scenes/plants/plant_node.tscn" id="1_s8rur"]
+[ext_resource type="Script" uid="uid://jvpy8yh1p7pi" path="res://scenes/plants/cabbage_pult/cabbage_pult.gd" id="2_eq4io"]
+[ext_resource type="PackedScene" uid="uid://fu2yxv033ynx" path="res://scenes/plants/cabbage_pult/cabbage_pult_sprite.tscn" id="2_xfpbb"]
+[ext_resource type="Script" uid="uid://du3h6l7moscgk" path="res://scripts/shared_components/cooldown_component.gd" id="4_pwljl"]
+[ext_resource type="Script" uid="uid://bk2oyfsl5kmjr" path="res://scripts/plant_scripts/plant_components/zombie_detection_component.gd" id="5_2ie43"]
+[ext_resource type="Script" uid="uid://bvryybk6hqy0m" path="res://scripts/plant_scripts/plant_components/plant_lobber_component.gd" id="6_pwljl"]
+[ext_resource type="PackedScene" uid="uid://mem4tscvu265" path="res://scenes/game_world/projectiles/cabbage/cabbage.tscn" id="7_2ie43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8rur"]
+size = Vector2(16, 25)
+
+[node name="Plant_Node" node_paths=PackedStringArray("sprite") instance=ExtResource("1_s8rur")]
+script = ExtResource("2_eq4io")
+sprite = NodePath("Cabbage_Pult_Sprite")
+
+[node name="Cabbage_Pult_Sprite" parent="." index="0" instance=ExtResource("2_xfpbb")]
+position = Vector2(0, 4)
+
+[node name="Cooldown_Node" type="Node" parent="Components" index="1" node_paths=PackedStringArray("entity")]
+unique_name_in_owner = true
+script = ExtResource("4_pwljl")
+entity = NodePath("../..")
+cooldown_type = "attack"
+cooldown_time = 1.528
+variation = 0.214
+metadata/_custom_type_script = "uid://du3h6l7moscgk"
+
+[node name="Detect_Node" type="Node" parent="Components" index="2" node_paths=PackedStringArray("plant")]
+unique_name_in_owner = true
+script = ExtResource("5_2ie43")
+plant = NodePath("../..")
+detect_range = 288.0
+metadata/_custom_type_script = "uid://bk2oyfsl5kmjr"
+
+[node name="Lobber_Node" type="Node" parent="Components" index="3" node_paths=PackedStringArray("plant", "nuzzle")]
+unique_name_in_owner = true
+script = ExtResource("6_pwljl")
+plant = NodePath("../..")
+nuzzle = NodePath("../../Nuzzle")
+projectile = ExtResource("7_2ie43")
+damage = 30
+height = 76
+duration = 0.85
+metadata/_custom_type_script = "uid://bvryybk6hqy0m"
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_s8rur")
+
+[node name="Nuzzle" type="Marker2D" parent="." index="3"]
+position = Vector2(3, -24)
+
+[connection signal="timeout" from="Components/Cooldown_Node" to="." method="_on_cooldown_node_timeout"]

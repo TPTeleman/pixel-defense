@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://boly5asgkv2bk"]
+
+[ext_resource type="PackedScene" uid="uid://s725ol4h2rn8" path="res://scenes/game_world/projectiles/straight_plant_projectile.tscn" id="1_rpv5x"]
+[ext_resource type="Script" uid="uid://b0owornmbk08f" path="res://scenes/game_world/projectiles/hot_pea/hot_pea.gd" id="2_bnjp6"]
+[ext_resource type="Texture2D" uid="uid://caiywwspdngvg" path="res://sprites/particles/projectiles/hot_pea.png" id="3_rpv5x"]
+[ext_resource type="Texture2D" uid="uid://c60qof760do8i" path="res://sprites/particles/white_particle.png" id="4_bnjp6"]
+
+[sub_resource type="Gradient" id="Gradient_520py"]
+offsets = PackedFloat32Array(0.108696, 0.34058, 0.637681, 0.891304)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.784314, 0, 1, 1, 0.564706, 0, 1, 0.913725, 0.192157, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xr2sm"]
+gradient = SubResource("Gradient_520py")
+
+[sub_resource type="Curve" id="Curve_a74n8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.790323, 0.564202), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.86381, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kywwi"]
+curve = SubResource("Curve_a74n8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ykycc"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 72.0
+initial_velocity_max = 72.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.75
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_kywwi")
+color_ramp = SubResource("GradientTexture1D_xr2sm")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw07a"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exvwo"]
+radius = 16.0
+
+[node name="Hot_Pea" instance=ExtResource("1_rpv5x")]
+script = ExtResource("2_bnjp6")
+damage_type = "fire"
+sub_type = "pea"
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_rpv5x")
+
+[node name="Fire_Particles" type="GPUParticles2D" parent="Sprite" index="0"]
+show_behind_parent = true
+amount = 32
+texture = ExtResource("4_bnjp6")
+lifetime = 0.45
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ykycc")
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_dw07a")
+
+[node name="Splashbox" type="Area2D" parent="." index="2"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Splashbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_exvwo")
+
+[node name="Screen_Notifier" parent="." index="3"]
+visible = false
+rect = Rect2(-5, -5, 10, 10)

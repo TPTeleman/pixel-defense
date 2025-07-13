@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://mem4tscvu265"]
+
+[ext_resource type="PackedScene" uid="uid://be07f8f8qhc47" path="res://scenes/game_world/projectiles/lobbed_plant_projectile.tscn" id="1_nwyoy"]
+[ext_resource type="Texture2D" uid="uid://d06hgs32tq8d" path="res://sprites/particles/projectiles/cabbage.png" id="2_g0cot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1csj"]
+radius = 5.0
+
+[node name="Cabbage" instance=ExtResource("1_nwyoy")]
+rotation_speed = 128.0
+damage_type = "normal"
+
+[node name="Cabbage" type="Sprite2D" parent="." index="0"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_g0cot")
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_e1csj")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://x3u1kmphyusf"]
+
+[ext_resource type="Script" uid="uid://cipej0rb553yc" path="res://scripts/game_world/lawn.gd" id="1_1fdsg"]
+[ext_resource type="Script" uid="uid://dp7lr6yqsspn7" path="res://scripts/game_world/components/grid.gd" id="1_53j31"]
+[ext_resource type="Script" uid="uid://bw7kcm874malo" path="res://scripts/game_world/components/entity_factory.gd" id="2_3urmn"]
+[ext_resource type="Texture2D" uid="uid://cr6eke6wwi50h" path="res://sprites/lawn/test_grass.png" id="2_65sxt"]
+[ext_resource type="Texture2D" uid="uid://c6q6je0nodvp3" path="res://sprites/lawn/default_checker.png" id="4_3ad68"]
+[ext_resource type="Script" uid="uid://b16b8dvrovn7i" path="res://scripts/game_world/components/input_manager.gd" id="5_t4328"]
+[ext_resource type="Script" uid="uid://88do8r2cj1t0" path="res://scripts/game_world/components/plant_manager.gd" id="6_fl0tf"]
+[ext_resource type="Script" uid="uid://cv1yoeaaojobb" path="res://scripts/game_world/components/zombie_manager.gd" id="7_1lb8e"]
+[ext_resource type="PackedScene" uid="uid://bj3cyathghcth" path="res://scenes/game_world/gui.tscn" id="7_4a0f5"]
+[ext_resource type="Script" uid="uid://bddrq352gj6cr" path="res://scripts/game_world/components/sun_factory.gd" id="7_65sxt"]
+[ext_resource type="Script" uid="uid://dd0ix2vlwsty0" path="res://scripts/game_world/components/wave_manager.gd" id="9_1lb8e"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1lb8e"]
+texture = ExtResource("2_65sxt")
+texture_region_size = Vector2i(26, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_53j31"]
+tile_size = Vector2i(26, 32)
+sources/0 = SubResource("TileSetAtlasSource_1lb8e")
+
+[node name="Lawn" type="Node2D" node_paths=PackedStringArray("grid", "entity_factory", "input_manager", "sun_factory", "plant_manager", "zombie_manager", "wave_manager")]
+script = ExtResource("1_1fdsg")
+grid = NodePath("Grid")
+entity_factory = NodePath("Components/Entity_Factory")
+input_manager = NodePath("Components/Input_Manager")
+sun_factory = NodePath("Components/Sun_Factory")
+plant_manager = NodePath("Components/Plant_Manager")
+zombie_manager = NodePath("Components/Zombie_Manager")
+wave_manager = NodePath("Components/Wave_Manager")
+metadata/_edit_lock_ = true
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="Background" type="TileMapLayer" parent="Map"]
+
+[node name="Default" type="TileMapLayer" parent="Map"]
+tile_set = SubResource("TileSet_53j31")
+
+[node name="Slanted" type="TileMapLayer" parent="Map"]
+
+[node name="Highlight" type="Sprite2D" parent="Map"]
+unique_name_in_owner = true
+position = Vector2(91, 112)
+texture = ExtResource("4_3ad68")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Entity_Factory" type="Node" parent="Components"]
+script = ExtResource("2_3urmn")
+
+[node name="Input_Manager" type="Node" parent="Components"]
+script = ExtResource("5_t4328")
+metadata/_custom_type_script = "uid://b16b8dvrovn7i"
+
+[node name="Plant_Manager" type="Node" parent="Components"]
+script = ExtResource("6_fl0tf")
+metadata/_custom_type_script = "uid://88do8r2cj1t0"
+
+[node name="Zombie_Manager" type="Node" parent="Components"]
+script = ExtResource("7_1lb8e")
+metadata/_custom_type_script = "uid://cv1yoeaaojobb"
+
+[node name="Sun_Factory" type="Node" parent="Components"]
+script = ExtResource("7_65sxt")
+metadata/_custom_type_script = "uid://bddrq352gj6cr"
+
+[node name="Wave_Manager" type="Node" parent="Components"]
+script = ExtResource("9_1lb8e")
+metadata/_custom_type_script = "uid://dd0ix2vlwsty0"
+
+[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("default_map", "slanted_map")]
+position = Vector2(104, 96)
+script = ExtResource("1_53j31")
+grid_size = Vector2i(9, 5)
+default_map = NodePath("../Map/Default")
+slanted_map = NodePath("../Map/Slanted")
+
+[node name="Container" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Plants" type="Node2D" parent="Container"]
+unique_name_in_owner = true
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Zombies" type="Node2D" parent="Container"]
+unique_name_in_owner = true
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="Container"]
+unique_name_in_owner = true
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="GUI" parent="." instance=ExtResource("7_4a0f5")]
+unique_name_in_owner = true
+
+[connection signal="plant_button_pressed" from="GUI" to="Components/Input_Manager" method="_on_gui_plant_button_pressed"]

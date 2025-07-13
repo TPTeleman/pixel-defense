@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqi215sgw1tjq"]
+
+[ext_resource type="Script" uid="uid://bo2flr5org24n" path="res://scripts/game_world/hud.gd" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://buue40xud8aeg" path="res://scripts/ui_elements/window_control.gd" id="2_oo0fn"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ahhtf")
+
+[node name="Menu_Window" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oo0fn")
+
+[node name="Level_Select_Window" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oo0fn")
+
+[node name="Victory_Window" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oo0fn")
+
+[node name="Defeat_Window" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oo0fn")
+
+[node name="Pause_Window" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oo0fn")

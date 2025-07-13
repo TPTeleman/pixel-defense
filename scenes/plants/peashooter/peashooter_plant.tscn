@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl4rasyoqifg6"]
+
+[ext_resource type="PackedScene" uid="uid://dg6bwopnhqdfp" path="res://scenes/plants/plant_node.tscn" id="1_lpgrt"]
+[ext_resource type="Script" uid="uid://cft8gt6bbplsb" path="res://scenes/plants/peashooter/peashooter.gd" id="2_5l37y"]
+[ext_resource type="PackedScene" uid="uid://bxr57fkkos3v7" path="res://scenes/plants/peashooter/peashooter_sprite.tscn" id="2_lpgrt"]
+[ext_resource type="Script" uid="uid://du3h6l7moscgk" path="res://scripts/shared_components/cooldown_component.gd" id="4_scxk7"]
+[ext_resource type="Script" uid="uid://bk2oyfsl5kmjr" path="res://scripts/plant_scripts/plant_components/zombie_detection_component.gd" id="5_lh6ii"]
+[ext_resource type="Script" uid="uid://dk4eouy3ewtdb" path="res://scripts/plant_scripts/plant_components/plant_shooter_component.gd" id="6_f8b6f"]
+[ext_resource type="PackedScene" uid="uid://bukq1y47orvyu" path="res://scenes/game_world/projectiles/pea/pea.tscn" id="7_ix6dx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47jsx"]
+size = Vector2(16, 25)
+
+[node name="Plant_Node" node_paths=PackedStringArray("sprite") instance=ExtResource("1_lpgrt")]
+script = ExtResource("2_5l37y")
+sprite = NodePath("Peashooter_Sprite")
+
+[node name="Peashooter_Sprite" parent="." index="0" instance=ExtResource("2_lpgrt")]
+position = Vector2(0, 6)
+
+[node name="Cooldown_Node" type="Node" parent="Components" index="1" node_paths=PackedStringArray("entity")]
+unique_name_in_owner = true
+script = ExtResource("4_scxk7")
+entity = NodePath("../..")
+cooldown_type = "attack"
+cooldown_time = 0.845
+variation = 0.165
+metadata/_custom_type_script = "uid://du3h6l7moscgk"
+
+[node name="Detect_Node" type="Node" parent="Components" index="2" node_paths=PackedStringArray("plant")]
+unique_name_in_owner = true
+script = ExtResource("5_lh6ii")
+plant = NodePath("../..")
+detect_range = 288.0
+metadata/_custom_type_script = "uid://bk2oyfsl5kmjr"
+
+[node name="Shooter_Node" type="Node" parent="Components" index="3" node_paths=PackedStringArray("plant", "nuzzle")]
+unique_name_in_owner = true
+script = ExtResource("6_f8b6f")
+plant = NodePath("../..")
+nuzzle = NodePath("../../Nuzzle")
+projectile = ExtResource("7_ix6dx")
+range_limit = false
+metadata/_custom_type_script = "uid://dk4eouy3ewtdb"
+
+[node name="Hitbox" parent="." index="2"]
+visible = true
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_47jsx")
+
+[node name="Nuzzle" type="Marker2D" parent="." index="3"]
+position = Vector2(16, -10)
+
+[connection signal="timeout" from="Components/Cooldown_Node" to="." method="_on_cooldown_node_timeout"]
